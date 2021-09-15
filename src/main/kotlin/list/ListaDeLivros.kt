@@ -1,6 +1,6 @@
 package list
 
-fun main(){
+fun main() {
     val livro1 = Livro(
         titulo = "Grande Sertão 1",
         autor = "Não tem",
@@ -30,7 +30,7 @@ fun main(){
     //MutableList<Livro> -> o que fica dentro de <> é o tipo que indica que estamos usando Generics(cria um objeto do tipo genérico)
     //e todos os métodos da mutableList vai se adaptar ao tipo que é passado em <>
     //as listas tem valores dinâmicos e os array não, é definido já no momento de criação do array o seu tamanho
-    val livros:MutableList<Livro> = mutableListOf(livro1, livro2, livro3, livro4)
+    val livros: MutableList<Livro> = mutableListOf(livro1, livro2, livro3, livro4)
 
     livros.add(
         Livro(
@@ -40,9 +40,16 @@ fun main(){
         )
     )
 
-    println("Livros> $livros")
+    livros.imprimeComMarcadores()
 
     livros.remove(livro1)
 
-    println("Livro 1 removido> $livros")
+    livros.imprimeComMarcadores()
+}
+
+fun MutableList<Livro>.imprimeComMarcadores() {
+    val textoFormatado = this.joinToString(separator = "\n") {
+        " - ${it.titulo} de ${it.autor}"
+    }
+    println(" ### Lista de Livros ### \n$textoFormatado")
 }
