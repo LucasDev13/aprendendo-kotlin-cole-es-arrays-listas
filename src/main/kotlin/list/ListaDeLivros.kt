@@ -69,11 +69,7 @@ fun main() {
         .map { it.titulo }
 
     println("Map de titulos> $mapTitulos")
-}
 
-fun List<Livro>.imprimeComMarcadores() {
-    val textoFormatado = this.joinToString(separator = "\n") {
-        " - ${it.titulo} de ${it.autor}"
-    }
-    println(" ### Lista de Livros ### \n$textoFormatado")
+    val publi = livros.map { it.anoPublicacao }
+    println("ano publicacao> $publi")
 }
