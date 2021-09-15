@@ -45,9 +45,20 @@ fun main() {
     livros.remove(livro1)
 
     livros.imprimeComMarcadores()
+
+    //sorted() traz a lista ordenada a partir de um critério
+    //ordenado a partir da função implementado em Livro
+    val ordenadoAnoPublicacao: List<Livro> = livros.sorted()
+    ordenadoAnoPublicacao.imprimeComMarcadores()
+
+    //ordenado a partir da função sortedBy
+    val ordenadoPorTitulo = livros.sortedBy { it.titulo }
+    ordenadoPorTitulo.imprimeComMarcadores()
+
+    livros.sortedBy { it.autor }.imprimeComMarcadores()
 }
 
-fun MutableList<Livro>.imprimeComMarcadores() {
+fun List<Livro>.imprimeComMarcadores() {
     val textoFormatado = this.joinToString(separator = "\n") {
         " - ${it.titulo} de ${it.autor}"
     }

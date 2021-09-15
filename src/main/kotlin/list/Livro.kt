@@ -7,7 +7,10 @@ data class Livro(
     val autor: String,
     val anoPublicacao: Long,
     val editora: String? = null
-){
+): Comparable<Livro>{
     //data class é um tipo especial no kotlin, que ela fornece além das caracteristis normais de uma classe
     //ela já fornece algumas funções automáticamente
+    override fun compareTo(other: Livro): Int {
+        return this.anoPublicacao.compareTo(other.anoPublicacao)
+    }
 }
