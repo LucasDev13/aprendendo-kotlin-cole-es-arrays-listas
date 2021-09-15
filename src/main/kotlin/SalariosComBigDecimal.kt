@@ -22,27 +22,33 @@ fun main() {
         acumulador, salario ->
         acumulador + (salario * meses).setScale(2, RoundingMode.UP)
     }
-
     println("Gasto em 6 meses> $gastoTotal")
 
+//    val salariosOrdenados = salariosComAumento.sorted()
+//    val tresUltimosSalarios: Array<BigDecimal> = salariosOrdenados.takeLast(3).toTypedArray()
+//    val media = tresUltimosSalarios.media()
+
+    //imendando uma chamada na outra
+    val media = salariosComAumento
+        .sorted()
+        .takeLast(3)
+        .toTypedArray()
+        .media()
+    println("media de salarios> $media")
+
+    val mediaMenoresSalarios = salariosComAumento
+        .sorted()
+        .take(3)
+        .toTypedArray()
+        .media()
+
+    println("menor media de salario> $mediaMenoresSalarios")
 }
 
-private fun calculaAumentoRelativo(salario: BigDecimal, aumento: BigDecimal) =
-    if (salario < "5000".toBigDecimal()) {
+private fun calculaAumentoRelativo(salario: BigDecimal, aumento: BigDecimal): BigDecimal {
+    return if (salario < "5000".toBigDecimal()) {
         salario + "500".toBigDecimal()
     } else {
         (salario * aumento).setScale(2, RoundingMode.UP)
-    }
-
-fun bigDecimalArrayOf(vararg valores: String): Array<BigDecimal>{
-    return Array<BigDecimal>(valores.size){ i ->
-        valores[i].toBigDecimal()
-    }
-}
-
-fun Array<BigDecimal>.somatoria(): BigDecimal{
-    //o reduce reduz o array inteiro a um valor só somando cada valor. Poderia fazer qualquer outra operação.
-    return this.reduce {acumulador, valor ->
-        acumulador + valor
     }
 }
