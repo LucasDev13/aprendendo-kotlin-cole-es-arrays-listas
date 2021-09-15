@@ -56,6 +56,19 @@ fun main() {
     ordenadoPorTitulo.imprimeComMarcadores()
 
     livros.sortedBy { it.autor }.imprimeComMarcadores()
+
+    listaDeLivros
+//        .filter { it.autor == "Não tem nada" }
+        .filter { it.autor.startsWith("N") }
+        .sortedBy { it.anoPublicacao }
+        .imprimeComMarcadores()
+
+    val mapTitulos = listaDeLivros
+        .filter { it.autor.startsWith("N") }
+        .sortedBy { it.anoPublicacao }
+        .map { it.titulo }
+
+    println("Map de titulos> $mapTitulos")
 }
 
 fun List<Livro>.imprimeComMarcadores() {
